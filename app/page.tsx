@@ -1,8 +1,14 @@
-import Image from "next/image";
+import Image from 'next/image';
+
+// Access environment variables
+const { FIRSTNAME, VERSION_NUMBER, SECRET } = process.env;
 
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <header className="text-center row-start-1">
+        <h1 className="text-2xl font-bold">This is running Next JS 15 RC</h1>
+      </header>
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -21,7 +27,12 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
-
+        <div className="bg-white shadow-md rounded-lg p-6 w-full sm:w-auto">
+          <h2 className="text-lg font-semibold mb-4">Environment Variables</h2>
+          <p><strong>FIRSTNAME:</strong> {FIRSTNAME}</p>
+          <p><strong>VERSION_NUMBER:</strong> {VERSION_NUMBER}</p>
+          <p><strong>SECRET:</strong> {SECRET}</p>
+        </div>
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
@@ -46,6 +57,12 @@ export default function Home() {
           >
             Read our docs
           </a>
+        </div>
+        <div className="bg-gray-100 shadow-md rounded-lg p-6 w-full sm:w-auto mt-8">
+          <h2 className="text-lg font-semibold mb-4">How the Script Works</h2>
+          <p>
+            This script sets environment variables such as <code>FIRSTNAME</code>, <code>VERSION_NUMBER</code>, and <code>SECRET</code> using <code>process.env</code>. It then runs the Next.js development server with <code>npm run dev</code> while ensuring these variables are available in the environment.
+          </p>
         </div>
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
@@ -94,6 +111,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        <p className="mt-4 text-center w-full">Written by Callum Bir</p>
       </footer>
     </div>
   );
